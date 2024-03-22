@@ -57,6 +57,21 @@ def move():
     update()
     ontimer(move, 100)
 
+def move_food():
+    "Move food randomly."
+    food.x += randrange(-1, 2) * 10
+    food.y += randrange(-1, 2) * 10
+
+    if not inside(food):
+        food.x *= -1
+        food.y *= -1
+
+    clear()
+    square(food.x, food.y, 9, 'green')
+    update()
+    ontimer(move_food, 1000)
+
+
 
 setup(420, 420, 370, 0)
 hideturtle()
@@ -67,4 +82,5 @@ onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
+move_food()
 done()
